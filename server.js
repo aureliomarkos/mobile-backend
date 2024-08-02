@@ -29,6 +29,11 @@ app.use('/carrinho', carrinhoRoutes);
 app.use('/enderecos', enderecosRoutes)
 app.use('/pedidos', pedidosRoutes)
 
+// Rota raiz
+app.get('/', (req, res) => {
+  res.send('API está funcionando!');
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
