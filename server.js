@@ -4,6 +4,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 require('dotenv').config({ path: 'mysqlConfig.env' });
 
+const helmet = require('helmet');
+app.use(helmet());
+
 // Importando as rotas
 const clientesRoutes = require('./src/sql_routes/clientes');
 const produtosRoutes = require('./src/sql_routes/produtos');
