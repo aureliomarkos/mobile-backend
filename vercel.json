@@ -6,11 +6,23 @@
         "use": "@vercel/node"
       }
     ],
+
     "routes": [
       {
         "src": "/(.*)",
         "dest": "/server.js"
       }
-    ]
-  }
-  
+    ],
+
+    "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    }
+  ]
+}
