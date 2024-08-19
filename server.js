@@ -19,10 +19,7 @@ const pedidosRoutes = require('./src/sql_routes/pedidos')
 
 // Middleware CORS
 const cors = require('cors');
-app.use(cors({
-  methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type,Authorization'
-}));
+app.use(cors());
 app.use(express.json());
 
 
