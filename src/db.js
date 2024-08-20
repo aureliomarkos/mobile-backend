@@ -1,3 +1,4 @@
+// src/db.js
 require('dotenv').config({ path: '../src/mysqlConfig.env' });
 const mysql = require('mysql2');
 
@@ -22,7 +23,6 @@ connection.getConnection((err) => {
 });
 
 module.exports = connection.promise();
-
 
 /*
 const connection = mysql.createConnection({

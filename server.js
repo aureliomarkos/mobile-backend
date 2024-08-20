@@ -1,4 +1,4 @@
-// file: server.js ..
+// server.js
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,10 +18,29 @@ const pedidosRoutes = require('./src/sql_routes/pedidos')
 
 
 // Middleware CORS
-// const cors = require('cors');
-// app.use(cors());
-app.use(express.json());
+const cors = require('cors');
 
+const allowedOrigins = [
+  'http://localhost:8080', // Origem do seu PWA em desenvolvimento
+  'capacitor://localhost', // Origem do seu aplicativo mobile
+  'https://sua-aplicacao.com', // Domínio do seu PWA em produção
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Permite requisições sem origem (como no caso de apps mobile)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+}));
+
+
+app.use(express.json());
 
 // Usando as rotas
 app.use('/clientes', clientesRoutes);
